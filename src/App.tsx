@@ -16,7 +16,7 @@ function App() {
 
   const rotate = useTransform(
     scrollY,
-    [0, 334],
+    [0, 292],
     [0, 360],
     { clamp: false }
   );
