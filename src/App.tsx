@@ -1,69 +1,49 @@
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import dog from "./assets/dog.png";
-import cat from "./assets/cat.png";
-import { useState } from "react";
-
-
 
 function App() {
-  const { scrollYProgress } = useScroll();
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["end end", "start start"]
+  });
+
+  const imageValue = useTransform(scrollYProgress, [0, 1], ['-200%', '0%']);
+
+  const { scrollY } = useScroll();
+
+  const rotate = useTransform(
+    scrollY,
+    [0, 334],
+    [0, 360],
+    { clamp: false }
+  );
 
   return (
-    <>
-      <div className="m-[200px]">
-        <div className="mockup-phone fixed">
+    <div className="relative h-[1000px] w-[1080px]" ref={containerRef}>
+      <div className="fixed mt-20 ml-[250px]">
+        <div className="mockup-phone">
           <div className="camera"></div>
           <div className="display">
             <div className="artboard artboard-demo phone-1">
               <h1 className="bold text-6xl"> Today</h1>
-              <p className="bold self-start ml-5"> Amria <br />Williams</p>
-              <div className="h-48"></div>
+              <div className="h-80">
+              </div>
               <p className="self-start ml-5">Photo shooting with Eva Sophie</p>
               <p className="self-start ml-5 text-sm text-gray-400">Copenhagen,Denmark</p>
-              <div className="bg-gray-400 self-stretch h-px mx-5 mt-3"></div>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <motion.img
-          className="w-72 h-72 ml-[230px] mt-[500px]"
-          src={dog}
-          initial={{ opacity: 0, x:500}}
-          whileInView={{ opacity: 1, x:0}}
-          transition={{duration:1}}     
-        />
+      <div className="fixed top-72 left-[800px]">
+        <motion.div style={{ translateX: imageValue, rotate: rotate }}>
+          <img className="w-[250px]" src={dog} alt="a dog" />
+        </motion.div>
       </div>
-      <div>
-        <motion.img
-          className="w-72 h-72 ml-[230px] mt-[500px]"
-          src={dog}
-          initial={{ opacity: 0, x:500}}
-          whileInView={{ opacity: 1, x:0}}
-          transition={{duration:1}}     
-        />
-      </div>
-      <div>
-        <motion.img
-          className="w-72 h-72 ml-[230px] mt-[500px]"
-          src={dog}
-          initial={{ opacity: 0, x:500}}
-          whileInView={{ opacity: 1, x:0}}
-          transition={{duration:1}}     
-        />
-      </div>
-      <div>
-        <motion.img
-          className="w-72 h-72 ml-[230px] mt-[500px]"
-          src={dog}
-          initial={{ opacity: 0, x:500}}
-          whileInView={{ opacity: 1, x:0}}
-          transition={{duration:1}}     
-        />
-      </div>
-    </>
-
-  )
+    </div>
+  );
 }
 
 export default App
