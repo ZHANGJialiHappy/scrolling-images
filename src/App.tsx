@@ -23,8 +23,6 @@ function App() {
 
   const textValue1 = useTransform(scrollYProgress, [0, 1], ['400%', '0%']);
 
-  const textValue2 = useTransform(scrollYProgress, [0, 1], ['400%', '0%']);
-
   return (
     <div className="relative h-[1000px] w-[1080px]" ref={containerRef}>
       <div className="ml-[350px] pt-20 text-3xl">please scroll</div>
