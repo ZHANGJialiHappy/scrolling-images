@@ -21,6 +21,10 @@ function App() {
     { clamp: false }
   );
 
+  const textValue1 = useTransform(scrollYProgress, [0, 1], ['400%', '0%']);
+
+  const textValue2 = useTransform(scrollYProgress, [0, 1], ['400%', '0%']);
+
   return (
     <div className="relative h-[1000px] w-[1080px]" ref={containerRef}>
       <div className="ml-[350px] pt-20 text-3xl">please scroll</div>
@@ -41,6 +45,11 @@ function App() {
       <div className="fixed top-72 left-[800px]">
         <motion.div style={{ translateX: imageValue, rotate: rotate }}>
           <img className="w-[250px]" src={dog} alt="a dog" />
+        </motion.div>
+      </div>
+      <div className="fixed mt-[80px] ">
+        <motion.div style={{ translateX: textValue1 }}>
+          <div className=" text-3xl">Please open in web.</div>
         </motion.div>
       </div>
     </div>
