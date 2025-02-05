@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="relative h-[1000px] w-[1080px]" ref={containerRef}>
-      <div className="ml-[350px] pt-20 text-3xl">please scroll</div>
+      <div className="ml-[350px] pt-20 text-3xl">swipe up and down on the touchpad</div>
       <div className="fixed mt-2 ml-[250px]">
         <div className="mockup-phone">
           <div className="camera"></div>
